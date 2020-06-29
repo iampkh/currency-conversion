@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/general_margin"
+            android:background="@drawable/light_border"
+            android:clipChildren="true"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/currency_hint"
+                    style="@style/outside_hint_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/general_padding"
+                    android:paddingTop="@dimen/general_padding"
+                    android:text="@string/your_amount" />
+
+                <EditText
+                    android:id="@+id/currency_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="@dimen/general_padding" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/currency_select_btn"
+                style="@style/currency_selector_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:drawableRight="@android:drawable/arrow_down_float"
+                android:maxLength="4"
+                android:paddingEnd="@dimen/general_padding"
+                android:text="JPY" />
+        </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="currency_selectory_container_height">75dp</dimen>
+    <dimen name="general_margin">24dp</dimen>
+    <dimen name="general_padding">12dp</dimen>
+    <dimen name="corner_radius">8dp</dimen>
+    <dimen name="light_border_stroke_width">1dp</dimen>
+    <dimen name="list_item_width">200dp</dimen>
+    <dimen name="list_item_height">200dp</dimen>
+    <dimen name="cardview_elevation">3dp</dimen>
+</resources>
