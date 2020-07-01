@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.app.currencyconversion.viewmodel.CurrencyViewModel
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,9 +1,12 @@
-package com.app.currencyconversion
+package com.app.currencyconversion.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.app.currencyconversion.model.data.Currency
+import com.app.currencyconversion.model.local.LiveRateDatabase
+import com.app.currencyconversion.model.repo.CurrencyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -21,7 +24,7 @@ class CurrencyViewModel(application: Application):AndroidViewModel(application) 
     }
 
 
-    fun insert(currency:Currency) = viewModelScope.launch(Dispatchers.IO) {
+    fun insert(currency: Currency) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(currency)
     }
 

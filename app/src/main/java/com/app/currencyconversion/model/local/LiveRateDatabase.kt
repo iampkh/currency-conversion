@@ -1,14 +1,15 @@
-package com.app.currencyconversion
+package com.app.currencyconversion.model.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.app.currencyconversion.model.data.Currency
+import com.app.currencyconversion.Utility
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
 
 @Database(entities = [Currency::class],version = 1)
 abstract class LiveRateDatabase: RoomDatabase() {
@@ -20,14 +21,18 @@ abstract class LiveRateDatabase: RoomDatabase() {
         private var INSTANCE: LiveRateDatabase?=null
 
         fun getDatbase(context:Context,
-                       scope: CoroutineScope):LiveRateDatabase{
-            return INSTANCE?: synchronized(this) {
+                       scope: CoroutineScope): LiveRateDatabase {
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     LiveRateDatabase::class.java,
                     Utility.DB_NAME
                 ).fallbackToDestructiveMigration()
-                    .addCallback(LiveRateDatabaseCallback(scope))
+                    .addCallback(
+                        LiveRateDatabaseCallback(
+                            scope
+                        )
+                    )
                     .build()
                 INSTANCE = instance
                 instance
@@ -42,7 +47,9 @@ abstract class LiveRateDatabase: RoomDatabase() {
                 super.onOpen(db)
                 INSTANCE?.let { liveRateDatabase ->
                     scope.launch(Dispatchers.IO) {
-                        populateDatbase(liveRateDatabase.currencyDao())
+                        populateDatbase(
+                            liveRateDatabase.currencyDao()
+                        )
                     }
                 }
             }
@@ -50,7 +57,7 @@ abstract class LiveRateDatabase: RoomDatabase() {
 
         fun populateDatbase(currencyDao: CurrencyDao){
 
-            var currency = Currency("USDUSD","1")
+            var currency = Currency("USDUSD", "1")
             currencyDao.insert(currency)
         }
         

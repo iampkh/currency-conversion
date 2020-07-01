@@ -1,8 +1,9 @@
-package com.app.currencyconversion
+package com.app.currencyconversion.model.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.app.currencyconversion.Utility
 
 @Entity(tableName = Utility.RATE_TABLE_NAME)
 data class Currency(@PrimaryKey @ColumnInfo(name =Utility.COLUMN_CURRENCY) val currency: String,
