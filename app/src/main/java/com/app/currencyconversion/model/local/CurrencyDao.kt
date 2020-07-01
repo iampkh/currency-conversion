@@ -6,17 +6,20 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.app.currencyconversion.model.data.Currency
-import com.app.currencyconversion.Utility
+import com.app.currencyconversion.CurrencyUtil
 
 @Dao
 interface  CurrencyDao {
 
-    @Query("SELECT * from "+ Utility.RATE_TABLE_NAME +" ORDER BY "
-            + Utility.COLUMN_CURRENCY +" ASC")
+    @Query("SELECT * from "+ CurrencyUtil.RATE_TABLE_NAME +" ORDER BY "
+            + CurrencyUtil.COLUMN_CURRENCY +" ASC")
     fun getCurrenciesAndRates():LiveData<List<Currency>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(currency : Currency)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertBulk(currencyList : List<Currency>)
 
 
 }

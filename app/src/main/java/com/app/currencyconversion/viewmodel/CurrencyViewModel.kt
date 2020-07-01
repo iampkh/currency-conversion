@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.app.currencyconversion.model.data.Currency
 import com.app.currencyconversion.model.local.LiveRateDatabase
+import com.app.currencyconversion.model.remote.RetrofitBuilder
 import com.app.currencyconversion.model.repo.CurrencyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,10 +20,11 @@ class CurrencyViewModel(application: Application):AndroidViewModel(application) 
     init {
         val currencyDao = LiveRateDatabase.getDatbase(application,
             viewModelScope).currencyDao()
-        repository = CurrencyRepository(currencyDao)
+        val remoteService = RetrofitBuilder.apiService
+        repository = CurrencyRepository(remoteService,currencyDao)
         currenciesAndRatesList = repository.currencyList
-    }
 
+    }
 
     fun insert(currency: Currency) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(currency)

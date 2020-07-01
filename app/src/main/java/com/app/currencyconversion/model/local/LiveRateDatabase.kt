@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.app.currencyconversion.model.data.Currency
-import com.app.currencyconversion.Utility
+import com.app.currencyconversion.CurrencyUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +26,7 @@ abstract class LiveRateDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     LiveRateDatabase::class.java,
-                    Utility.DB_NAME
+                    CurrencyUtil.DB_NAME
                 ).fallbackToDestructiveMigration()
                     .addCallback(
                         LiveRateDatabaseCallback(
@@ -57,7 +57,7 @@ abstract class LiveRateDatabase: RoomDatabase() {
 
         fun populateDatbase(currencyDao: CurrencyDao){
 
-            var currency = Currency("USDUSD", "1")
+            var currency = Currency("USDUSD", 1.0f)
             currencyDao.insert(currency)
         }
         
