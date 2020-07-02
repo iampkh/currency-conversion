@@ -16,11 +16,16 @@ object CurrencyUtil {
         return "N/A"
     }
 
+    /**
+     * method to convert one region's currency to another.
+     */
     fun convert(from:Currency,to:Currency,amt:Float):Float{
         if(from != null && to != null) {
             return amt / from.rate * to.rate
         }
         return 0f
     }
+
+
 
 }

@@ -18,7 +18,7 @@ class LiveQuotesJsonDeserializer : JsonDeserializer<LiveQuotes> {
     }
 
     private fun readQuotes(jsonObject:JsonObject) : Map<String, Float>? {
-        val jsonElement:JsonElement = jsonObject.get(KEY_QUOTES)
+        val jsonElement:JsonElement = jsonObject!!.get(KEY_QUOTES)
         if(jsonElement == null) return null;
 
         val quoteObject:JsonObject= jsonElement.asJsonObject

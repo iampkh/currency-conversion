@@ -4,16 +4,11 @@ import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.app.currencyconversion.model.data.Currency
-import com.app.currencyconversion.model.data.LiveQuotes
 import com.app.currencyconversion.model.local.CurrencyDao
 import com.app.currencyconversion.model.remote.RemoteAPIService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class CurrencyRepository(private val remoteService :RemoteAPIService
                          , private val currencyDao: CurrencyDao) {
@@ -21,10 +16,10 @@ class CurrencyRepository(private val remoteService :RemoteAPIService
     val currencyList: LiveData<List<Currency>> = currencyDao.getCurrenciesAndRates()
 
     init{
-        getRemoteData()
+       // syncLocalWithRemoteData()
     }
 
-    fun getRemoteData() {
+    fun syncLocalWithRemoteData() {
         //
         CoroutineScope(Dispatchers.IO).launch {
             val response = remoteService.getLiveCurrencyData()

@@ -25,7 +25,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/currency_hint"
+                    android:id="@+id/info_text"
                     style="@style/outside_hint_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -39,22 +39,20 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@null"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="10"
                     android:padding="@dimen/general_padding" />
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/currency_select_btn"
+            <Spinner
+                android:id="@+id/currency_spinner"
                 style="@style/currency_selector_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
-                android:drawableRight="@android:drawable/arrow_down_float"
-                android:maxLength="4"
-                android:paddingEnd="@dimen/general_padding"
-                android:text="JPY" />
+                android:spinnerMode="dropdown"
+                android:paddingEnd="@dimen/general_padding" />
         </LinearLayout>
 
 
