@@ -20,7 +20,7 @@ class CurrencyRepository(private val remoteService :RemoteAPIService
     }
 
     fun syncLocalWithRemoteData() {
-        //
+        //updating the database in worker thread.
         CoroutineScope(Dispatchers.IO).launch {
             val response = remoteService.getLiveCurrencyData()
             try {

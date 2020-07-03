@@ -11,6 +11,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * Database for Currency rate storing.
+ */
 @Database(entities = [Currency::class],version = 1)
 abstract class LiveRateDatabase: RoomDatabase() {
 
@@ -57,8 +60,14 @@ abstract class LiveRateDatabase: RoomDatabase() {
 
         fun populateDatbase(currencyDao: CurrencyDao){
 
-            var currency = Currency("USDUSD", 1.0f)
-            currencyDao.insert(currency)
+            var currency1 = Currency("USDUSD", 1.0f)
+            currencyDao.insert(currency1)
+            var currency2 = Currency("USDJPY", 0.5f)
+            currencyDao.insert(currency2)
+            var currency3 = Currency("USDINR", 0.2f)
+            currencyDao.insert(currency3)
+
+
         }
         
 

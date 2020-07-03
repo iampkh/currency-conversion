@@ -27,7 +27,7 @@ class ResultFragment : Fragment(),AdapterView.OnItemSelectedListener {
     //Currency specific declaration
     lateinit var mResultCurrency:Currency
     lateinit var mCurrencyList:List<Currency>
-    var mInputAmount: Amount? = Amount(0f, Currency("USDUSD",1f))
+    var mInputAmount: Amount? = null
 
 
     //Handler to avoid sending multiple change notification to viewmodel
@@ -101,11 +101,17 @@ class ResultFragment : Fragment(),AdapterView.OnItemSelectedListener {
         if(inputAmt != null) {
             val convertedAmount: Float =
                 CurrencyUtil.convert(inputAmt.currency, mResultCurrency, inputAmt.value)
-            mAmountEditText.setText(convertedAmount.toString());
+            Logger.dLog(
+                ResultFragment::class.java.simpleName,
+                "setConvertedAmount :From" + inputAmt.currency.currency +" To currency="+mResultCurrency.currency)
+            Logger.dLog(
+                ResultFragment::class.java.simpleName,
+                "setConvertedAmount :inputAmt.value" + inputAmt.value +"  Output value="+convertedAmount)
+            mAmountEditText.setText(CurrencyUtil.convertFloatToString(convertedAmount));
         }
     }
 
-    fun onAmountChanged(amt: Amount) {
+    private fun onAmountChanged(amt: Amount) {
         Logger.dLog(
             ResultFragment::class.java.simpleName,
             "onAmountChanged :" + amt.currency.currency
@@ -118,7 +124,16 @@ class ResultFragment : Fragment(),AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(arg0: AdapterView<*>?, view: View?, position: Int, id: Long) {
        mResultCurrency = mCurrencyList.get(position)
-        setConvertedAmount(mInputAmount!!)
+
+        mInputAmount?.let {
+            Logger.dLog(
+                ResultFragment::class.java.simpleName,
+                "onItemSelected :From" + it.currency.currency +" To currency="+mResultCurrency.currency
+            )
+            setConvertedAmount(it)
+
+        }
+
     }
     override fun onNothingSelected(p0: AdapterView<*>?) {
 

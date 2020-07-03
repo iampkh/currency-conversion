@@ -14,7 +14,7 @@ import com.app.currencyconversion.model.data.Currency
 import com.app.currencyconversion.viewmodel.AmountViewModel
 
 
-class ListRecyclerViewAdapter (val context:Context,val currencyList:List<Currency>)
+class ListRecyclerViewAdapter (val context:Context, var currencyList:List<Currency>)
     : RecyclerView.Adapter<ListRecyclerViewAdapter.CurrencyViewHolder>() {
 
     private lateinit  var mAmountViewModel : AmountViewModel
@@ -52,7 +52,7 @@ class ListRecyclerViewAdapter (val context:Context,val currencyList:List<Currenc
         }
         fun bind(currency:Currency) {
             mCurrencyText?.setText(CurrencyUtil.getDisplayName(currency))
-            mConvertedValueText?.setText(currency.rate.toString())
+            mConvertedValueText?.setText(CurrencyUtil.convertFloatToString(currency.rate))
         }
 
     }

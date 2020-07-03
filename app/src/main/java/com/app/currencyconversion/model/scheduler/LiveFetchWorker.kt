@@ -27,13 +27,16 @@ class LiveFetchWorker(appContext:Context, workerParams:WorkerParameters)
                 this).currencyDao()
             val remoteService = RetrofitBuilder.apiService
             var repository = CurrencyRepository(remoteService,currencyDao)
+
             repository.syncLocalWithRemoteData();
-            Log.d("WorkManager","LiveFetchWorker in progress")
+
+            Log.d(this::class.java.simpleName,"LiveFetchWorker in progress")
             /*withContext(Dispatchers.Main){
                 Toast.makeText(context,"Toast from worker thread",Toast.LENGTH_LONG).show()
             }*/
 
-            Result.success()
+           // Result.success()
+            Result.retry()
         }catch (error:Throwable){
             Result.failure()
         }

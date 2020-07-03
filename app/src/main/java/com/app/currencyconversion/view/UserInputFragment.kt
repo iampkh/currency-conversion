@@ -97,7 +97,7 @@ class UserInputFragment : Fragment(),AdapterView.OnItemSelectedListener {
                 val r = Runnable {
                     notifyAmountChange(text.toString())
                 }
-                mTextChangeHandler.removeCallbacks(r)
+                mTextChangeHandler.removeCallbacksAndMessages(null)
 
                mTextChangeHandler.postDelayed(r, 3000)
 
@@ -127,6 +127,7 @@ class UserInputFragment : Fragment(),AdapterView.OnItemSelectedListener {
             if (amountEntered != null && amountEntered.isNotEmpty()) {
                 val changedAmt = Amount(amountEntered.toFloat(), mCurrency)
                 mAmountViewModel.setRate(changedAmt)
+                Logger.dLog(UserInputFragment::class.java.simpleName,"notifyAmountChange :Amount updated")
             }
         }catch (e:NumberFormatException){
             Logger.eLog(UserInputFragment::class.java.simpleName,"Exception :"+e.toString())
