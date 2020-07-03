@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import com.app.currencyconversion.model.data.Currency
 import com.app.currencyconversion.model.local.CurrencyDao
 import com.app.currencyconversion.model.remote.RemoteAPIService
+import com.app.currencyconversion.util.helper.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,13 +28,13 @@ class CurrencyRepository(private val remoteService :RemoteAPIService
                 if (response.isSuccessful && response.body() !=null) {
                     val data = response.body()!!
 
-                    Log.d("Json response",""+data.quotes)
+                    Logger.dLog("Json response",""+data.quotes)
                     for((k,v) in data.quotes){
                         insert(Currency(k,v))
                     }
                 }
             }catch (e:Exception) {
-                Log.e("Json response error ",e.toString())
+                Logger.dLog("Json response error ",e.toString())
             }
 
         }

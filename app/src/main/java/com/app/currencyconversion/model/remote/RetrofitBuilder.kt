@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
     private const val BASE_URL = "http://api.currencylayer.com/"
-    const val API_KEY = "ca2712b036190d4b9f40bcc4bd1deb7e"
+    const val API_KEY = "a1dea80df01d4e5290b561c3301bd429"
     const val LIVEQUOTE = "live?access_key="+ API_KEY
 
 

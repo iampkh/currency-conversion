@@ -3,4 +3,8 @@
     <string name="your_amount">Your amount</string>
     <string name="from_currency_hint">Amount to convert</string>
     <string name="to_currency_hint">Converted amount</string>
+    <string name="sync15_min">Sync every 15 min</string>
+    <string name="sync30_min">Sync every 30 min</string>
+    <string name="sync_stop">stop sync</string>
+    <string name="sync_now">start sync</string>
 </resources>

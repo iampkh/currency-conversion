@@ -9,7 +9,7 @@ object CurrencyUtil {
     const val RATE_TABLE_NAME = "live_rate"
     const val COLUMN_CURRENCY = "currency"
     const val COLUMN_RATE = "rate"
-    const val IS_DEBUG = true
+    const val IS_DEBUG = false
 
     fun getDisplayName(currency:Currency):String{
         if(currency != null && currency.currency.length >= 3 ) {

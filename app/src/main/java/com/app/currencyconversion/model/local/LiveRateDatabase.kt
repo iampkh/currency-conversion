@@ -60,12 +60,13 @@ abstract class LiveRateDatabase: RoomDatabase() {
 
         fun populateDatbase(currencyDao: CurrencyDao){
 
-            var currency1 = Currency("USDUSD", 1.0f)
+            //Test code
+           /* var currency1 = Currency("USDUSD", 1.0f)
             currencyDao.insert(currency1)
             var currency2 = Currency("USDJPY", 0.5f)
             currencyDao.insert(currency2)
             var currency3 = Currency("USDINR", 0.2f)
-            currencyDao.insert(currency3)
+            currencyDao.insert(currency3)*/
 
 
         }

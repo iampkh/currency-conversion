@@ -24,7 +24,7 @@ object WorkManagerHelper{
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .build()
             val liveRatePerioricRequest: PeriodicWorkRequest =
-                PeriodicWorkRequestBuilder<LiveFetchWorker>(2, TimeUnit.MINUTES)
+                PeriodicWorkRequestBuilder<LiveFetchWorker>(30, TimeUnit.MINUTES)
                     .setConstraints(constraints)
                     .addTag(TAG_LIVE_RATE_SYNC_PERIODIC)
                     .build()

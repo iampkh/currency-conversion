@@ -8,6 +8,7 @@ import androidx.work.WorkerParameters
 import com.app.currencyconversion.model.local.LiveRateDatabase
 import com.app.currencyconversion.model.remote.RetrofitBuilder
 import com.app.currencyconversion.model.repo.CurrencyRepository
+import com.app.currencyconversion.util.helper.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -30,13 +31,13 @@ class LiveFetchWorker(appContext:Context, workerParams:WorkerParameters)
 
             repository.syncLocalWithRemoteData();
 
-            Log.d(this::class.java.simpleName,"LiveFetchWorker in progress")
+            Logger.dLog(this::class.java.simpleName,"LiveFetchWorker in progress")
             /*withContext(Dispatchers.Main){
                 Toast.makeText(context,"Toast from worker thread",Toast.LENGTH_LONG).show()
             }*/
 
-           // Result.success()
-            Result.retry()
+            Result.success()
+           // Result.retry()
         }catch (error:Throwable){
             Result.failure()
         }
